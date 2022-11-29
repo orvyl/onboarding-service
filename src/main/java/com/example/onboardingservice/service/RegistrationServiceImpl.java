@@ -70,4 +70,18 @@ account-service
 * POST createAccount should return CreateAccountResponse based from onboarding-service
 * GET getAccountsByCustomerId should return a list of strings of accountId
 
+1. Submit a new repo link
+    gcash-mini
+        onboarding-service/
+        customer-service/
+        account-service/
+2. Send email (Dec 17): [FINAL PROJECT SPRING BOOT] m.salazar
+    - repo link
+    - partner
+    - contribution
+    - Video/screen record of the demo
+    - Feedback
+    - OPTIONAL: Feedback from my content
+
+
  */
