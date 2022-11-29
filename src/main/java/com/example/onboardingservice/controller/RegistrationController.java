@@ -2,6 +2,8 @@ package com.example.onboardingservice.controller;
 
 import com.example.onboardingservice.payload.RegistrationRequest;
 import com.example.onboardingservice.payload.RegistrationResponse;
+import com.example.onboardingservice.service.RegistrationService;
+import com.example.onboardingservice.service.RegistrationServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +17,16 @@ import javax.validation.Valid;
 @RequestMapping("register")
 public class RegistrationController {
 
+    private final RegistrationService registrationService;
+
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public RegistrationResponse registerCustomer(@Valid @RequestBody RegistrationRequest request) {
-        return null;
+    public RegistrationResponse registerCustomer(@Valid @RequestBody RegistrationRequest request) throws RegistrationServiceException {
+        return registrationService.register(request);
     }
 
 }
