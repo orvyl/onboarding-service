@@ -44,20 +44,30 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         String customerId = customerServiceResponse.getBody().getCustomerId();
 
-        //call account service
-        ResponseEntity<CreateAccountResponse> accountServiceResponse
-                = restTemplate.postForEntity("http://localhost:8082/account", new CreateAccountRequest(customerId), CreateAccountResponse.class);
-
-        if (!accountServiceResponse.getStatusCode().equals(HttpStatus.CREATED)) {
-            throw new RegistrationServiceException("Failed to create account for customer id: " + customerId);
-        }
-
-        String accountId = accountServiceResponse.getBody().getAccountId();
+        //TODO: call account service (Make this work). Check account-service details below
+//        ResponseEntity<CreateAccountResponse> accountServiceResponse
+//                = restTemplate.postForEntity("http://localhost:8082/account", new CreateAccountRequest(customerId), CreateAccountResponse.class);
+//
+//        if (!accountServiceResponse.getStatusCode().equals(HttpStatus.CREATED)) {
+//            throw new RegistrationServiceException("Failed to create account for customer id: " + customerId);
+//        }
+//
+//        String accountId = accountServiceResponse.getBody().getAccountId();
 
         RegistrationResponse registrationResponse = new RegistrationResponse();
         registrationResponse.setCustomerId(customerId);
-        registrationResponse.setAccountIds(Collections.singletonList(accountId));
+        registrationResponse.setAccountIds(Collections.singletonList("DUMMY_ACCOUNT_ID"));//TODO put actual account id created
 
         return registrationResponse;
     }
 }
+
+/*
+
+account-service
+* It has a model Account with the ff fields: (primary) id,customer_id, current_balance, available_balance
+* It has 2 methods in the controller: POST createAccount, GET getAccountByCustomerId
+* POST createAccount should return CreateAccountResponse based from onboarding-service
+* GET getAccountByCustomerId should return a list of strings of accountId
+
+ */
