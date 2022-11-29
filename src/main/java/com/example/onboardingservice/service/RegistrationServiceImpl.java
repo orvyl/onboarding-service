@@ -66,8 +66,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 account-service
 * It has a model Account with the ff fields: (primary) id,customer_id, current_balance, available_balance
-* It has 2 methods in the controller: POST createAccount, GET getAccountByCustomerId
+* It has 2 methods in the controller: POST createAccount, GET getAccountsByCustomerId
 * POST createAccount should return CreateAccountResponse based from onboarding-service
-* GET getAccountByCustomerId should return a list of strings of accountId
+* GET getAccountsByCustomerId should return a list of strings of accountId
 
  */
